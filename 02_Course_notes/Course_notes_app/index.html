@@ -1,40 +1,134 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Node.js semester nodes</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Asimovian&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Asimovian&display=swap" rel="stylesheet">
 </head>
+
 <body>
-<section class="main-section">
-    <div class="navigation-bar">
+    <section class="main-section">
+        <div class="navigation-bar">
 
-        <ul class="navigation-menu">
-            <li class="navigation-menu-item">28-08-2025  <br> node.js intro</li>
-            <li class="navigation-menu-item">04-09-2025  </li>
-            <li class="navigation-menu-item">11-09-2025  </li>
-            <li class="navigation-menu-item">18-09-2025  </li>
-            <li class="navigation-menu-item">25-09-2025  </li>
-            <li class="navigation-menu-item">02-10-2025  </li>
-            <li class="navigation-menu-item">09-10-2025  </li>
-            <li class="navigation-menu-item">16-10-2025  </li>
-            <li class="navigation-menu-item">23-10-2025  </li>
-            <li class="navigation-menu-item">30-10-2025  </li>
+            <ul class="navigation-menu">
+                <li class="navigation-menu-item">28-08-2025 <br> node.js intro</li>
+                <li class="navigation-menu-item">04-09-2025 </li>
+                <li class="navigation-menu-item">11-09-2025 </li>
+                <li class="navigation-menu-item">18-09-2025 </li>
+                <li class="navigation-menu-item">25-09-2025 </li>
+                <li class="navigation-menu-item">02-10-2025 </li>
+                <li class="navigation-menu-item">09-10-2025 </li>
+                <li class="navigation-menu-item">16-10-2025 </li>
+                <li class="navigation-menu-item">23-10-2025 </li>
+                <li class="navigation-menu-item">30-10-2025 </li>
 
-        </ul>
-    </div>
-    <div class="main-Content">
+            </ul>
+        </div>
+        <div class="main-Content">
+            <div class="subjects">
+                <div class="subject" data-subject="git-terminal">
+                    <h2>Can work with Git in the terminal</h2>
+                    <ul class="code-copy">
+                        <li>
+                            <code>git init</code>
+                            <button class="copy-btn" onclick="copyCommand(this)"> Kopiér</button>
+                        </li>
+                        <li>
+                            <code>git status</code>
+                            <button class="copy-btn" onclick="copyCommand(this)"> Kopiér</button>
+                        </li>
+                        <li>
+                            <code>git add .</code>
+                            <button class="copy-btn" onclick="copyCommand(this)"> Kopiér</button>
+                        </li>
+                        <li>
+                            <code>git commit -m ""</code>
+                            <button class="copy-btn" onclick="copyCommand(this)"> Kopiér</button>
+                        </li>
+                        <li>
+                            <code>git push -u origin "brancn name"</code>
+                            <button class="copy-btn" onclick="copyCommand(this)"> Kopiér</button>
+                        </li>
+                        <li>
+                            <code>git checkout -b "branch name"</code>
+                            <button class="copy-btn" onclick="copyCommand(this)"> Kopiér</button>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="subject" data-subject="js-data-types">
+                    <h2>Understand and work with data types in JavaScript</h2>
+                    <div class="note-box">
+                        <p><strong>String</strong> – A sequence of text characters wrapped in quotes, e.g. "Hello".</p>
+                        <p><strong>Boolean</strong> – A logical value, either true or false.</p>
+                        <p><strong>Number</strong> – Numeric values (integers or decimals), e.g. 42 or 3.14.</p>
+                        <p><strong>BigInt</strong> – Very large integers beyond the safe range of Number, e.g. 123n.</p>
+                        <p><strong>Object</strong> – A collection of key–value pairs, e.g. {name: "Anna", age: 25}.</p>
+                        <p><strong>Symbol</strong> – A unique and immutable identifier, often used as an object key.</p>
+                        <p><strong>undefined</strong> – A variable that has been declared but not assigned a value.</p>
+                        <p><strong>null</strong> – An intentional empty value representing "no value".</p>
+                    </div>
+                </div>
+
+                <div class="subject" data-subject="what-is-node">
+                    <h2>Can explain what Node.js is and how to run files with it</h2>
+                    <ul>
+                        <li></li>
+                    </ul>
+                </div>
+
+                <div class="subject" data-subject="existing-data-types">
+                    <h2>Knows the existing data types in JavaScript and can work with them</h2>
+                    <ul>
+                        <li></li>
+                    </ul>
+                </div>
+
+                <div class="subject" data-subject="type-coercion">
+                    <h2>Understands type coercion and strategies to avoid it</h2>
+                    <ul>
+                        <li></li>
+                    </ul>
+                </div>
+
+                <div class="subject" data-subject="rest-api">
+                    <h2>Can design a REST API</h2>
+                    <ul>
+                        <li></li>
+                    </ul>
+                </div>
+
+                <div class="subject" data-subject="rest-conventions">
+                    <h2>Knows the three REST conventions we follow</h2>
+                    <ul>
+                        <li>Using the right HTTP verb</li>
+                        <li>Ordering</li>
+                        <li>Naming (noun, plural) that maps to collections in your system</li>
+                    </ul>
+                </div>
+
+                <div class="subject" data-subject="clean-code">
+                    <h2>While using a linter is not a requirement, having clean code is</h2>
+                    <ul>
+                        <li></li>
+                    </ul>
+                </div>
 
 
-    </div>
+            </div>
 
 
-</section>
-    
+        </div>
+
+
+    </section>
+
 </body>
 <script src="index.js"></script>
+
 </html>

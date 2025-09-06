@@ -16,6 +16,7 @@ app.get("/planets", (req, res) => {
         name: "Jupiter",
         moons: 79,
         rings: true
+        
     }
     res.json(jupiter);
 });
