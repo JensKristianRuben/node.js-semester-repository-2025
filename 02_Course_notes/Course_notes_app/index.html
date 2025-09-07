@@ -18,7 +18,8 @@
             <ul class="navigation-menu">
                 <li class="navigation-menu-item" onclick="navigateClassTopics('node.js-intro')">28-08-2025 <br> node.js
                     intro</li>
-                <li class="navigation-menu-item" onclick="navigateClassTopics('First-Server')">04-09-2025 <br> First Server</li>
+                <li class="navigation-menu-item" onclick="navigateClassTopics('First-Server')">04-09-2025 <br> First
+                    Server</li>
                 <li class="navigation-menu-item">11-09-2025 <br> First server </li>
                 <li class="navigation-menu-item">18-09-2025 </li>
                 <li class="navigation-menu-item">25-09-2025 </li>
@@ -94,7 +95,6 @@
                             <code>node filename.js"</code>
                             <button class="copy-btn" onclick="copyCommand(this)"> Kopiér</button>
                         </li>
-
                     </ul>
 
 
@@ -102,33 +102,73 @@
 
                 <div class="subject" data-subject="type-coercion">
                     <h2>Understands type coercion and strategies to avoid it</h2>
-                    <ul>
-                        <li></li>
+                    <div class="note-box-bread-text">
+                        <p>Type coercion is when JavaScript automatically converts a value from one data type to
+                            another. For example, if you compare the string "false" with the boolean value false,
+                            JavaScript may try to convert the types to make the comparison work, which often leads to
+                            unexpected results. Another example is adding the string "5" to the number 10; the result
+                            becomes "510" because the number is automatically converted to a string.
+
+                            To avoid type coercion, you can use strict equality === instead of ==, since === checks both
+                            the value and the type, resulting in more predictable code.
+
+                            If we want to add a number to a string, we can use the Number() or parseFloat() methods to
+                            convert (cast) the string into a number first.</p>
+                    </div>
+
+                    <ul class="code-copy">
+                        <li>
+                            <code>
+                            let strNum = "10";<br>
+                            let num = 5;<br> <br>
+                        
+                            let result = Number(strNum) + num; // 15
+                        </code>
+                            <button class="copy-btn" onclick="copyCommand(this)">Kopiér</button>
+                        </li>
                     </ul>
+
+
+
                 </div>
 
                 <div class="subject" data-subject="rest-api">
                     <h2>Can design a REST API</h2>
-                    <ul>
-                        <li></li>
-                    </ul>
+                    <div class="note-box">
+                        <p><strong>GET /books</strong> – Retrieves a list of all books in the collection.</p>
+                        <p><strong>GET /books/{id}</strong> – Retrieves a single book by its ID.</p>
+                        <p><strong>POST /books</strong> – Creates a new book.</p>
+                        <p><strong>PUT /books/{id}</strong> – Updates an entire book, replacing all its data.</p>
+                        <p><strong>PATCH /books/{id}</strong> – Updates part of a book, e.g., only the title or author.</p>
+                        <p><strong>DELETE /books/{id}</strong> – Removes a book from the collection.</p>
+                    </div>
+
                 </div>
 
                 <div class="subject" data-subject="rest-conventions">
                     <h2>Knows the three REST conventions we follow</h2>
-                    <ul>
-                        <li>Using the right HTTP verb</li>
-                        <li>Ordering</li>
-                        <li>Naming (noun, plural) that maps to collections in your system</li>
-                    </ul>
+
+                    <div class="note-box-bread-text">
+                        We work with five different HTTP verbs: GET, POST, PUT, PATCH, and DELETE.
+
+
+                        <ul>
+                            <li>GET: used to retrieve one or more records.</li>
+                            <li>POST: used to create a new record.</li>
+                            <li>PUT: used to update an entire record.</li>
+                            <li>PATCH: used to update part of a record..</li>
+                            <li>DELETE: used to remove a record.</li>
+                        </ul>
+
+                        Endpoints should be named using nouns in plural form, and the name should match the name used
+                        for the records in your database. For example, if your endpoint is /books, the collection in
+                        your database should also be called books. It is considered bad practice to name an endpoint
+                        something like /getBooks.
+
+                    </div>
+
                 </div>
 
-                <div class="subject" data-subject="clean-code">
-                    <h2>While using a linter is not a requirement, having clean code is</h2>
-                    <ul>
-                        <li></li>
-                    </ul>
-                </div>
             </div>
 
             <div class="subjects" data-topic="First-Server">
