@@ -58,11 +58,32 @@ body {
 }
 
 .subjects {
-    display: flex;
+    display: none;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     font-family: "roboto", sans-serif;
+}
+
+.subjects.active {
+    display: flex;
+    animation: slideUp 0.5s ease-out forwards;
+}
+
+@keyframes slideUp {
+    0% {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    100%{
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.subject {
+    display: flex;
+    flex-direction: column;
+   align-items: center;
 }
 
 .code-copy {
@@ -71,6 +92,7 @@ body {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
+    width: 400px;
 }
 
 .code-copy li {
@@ -103,10 +125,23 @@ body {
     background: #d1d5db;
 }
 
+
+.note-box {
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
+}
+
 .note-box p {
     margin: 8px 0;
-  }
+    width: 400px;
+}
 
-  .note-box strong {
+.note-box strong {
     color: #339933;
-  }
+}
+
+.note-box-bread-text {
+    width: 700px;
+    line-height: 2.2rem;
+}

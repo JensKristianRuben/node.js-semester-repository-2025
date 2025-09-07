@@ -16,9 +16,10 @@
         <div class="navigation-bar">
 
             <ul class="navigation-menu">
-                <li class="navigation-menu-item">28-08-2025 <br> node.js intro</li>
-                <li class="navigation-menu-item">04-09-2025 </li>
-                <li class="navigation-menu-item">11-09-2025 </li>
+                <li class="navigation-menu-item" onclick="navigateClassTopics('node.js-intro')">28-08-2025 <br> node.js
+                    intro</li>
+                <li class="navigation-menu-item" onclick="navigateClassTopics('First-Server')">04-09-2025 <br> First Server</li>
+                <li class="navigation-menu-item">11-09-2025 <br> First server </li>
                 <li class="navigation-menu-item">18-09-2025 </li>
                 <li class="navigation-menu-item">25-09-2025 </li>
                 <li class="navigation-menu-item">02-10-2025 </li>
@@ -30,7 +31,7 @@
             </ul>
         </div>
         <div class="main-Content">
-            <div class="subjects">
+            <div class="subjects" data-topic="node.js-intro">
                 <div class="subject" data-subject="git-terminal">
                     <h2>Can work with Git in the terminal</h2>
                     <ul class="code-copy">
@@ -77,16 +78,26 @@
 
                 <div class="subject" data-subject="what-is-node">
                     <h2>Can explain what Node.js is and how to run files with it</h2>
-                    <ul>
-                        <li></li>
-                    </ul>
-                </div>
+                    <div class="note-box-bread-text">
+                        <p>Normally, we know JavaScript from use in browser scripts, DOM manipulation, or client-side
+                            rendering of data. But Node.js takes JavaScript out of the browser and makes it possible to
+                            run
+                            in a runtime environment. It is built on Chrome’s V8 engine and is often used to create
+                            servers,
+                            APIs, or other types of backend applications. If you want to run a Node.js application, you
+                            need
+                            to find the path where the file is located an and type:</p>
+                    </div>
 
-                <div class="subject" data-subject="existing-data-types">
-                    <h2>Knows the existing data types in JavaScript and can work with them</h2>
-                    <ul>
-                        <li></li>
+                    <ul class="code-copy">
+                        <li>
+                            <code>node filename.js"</code>
+                            <button class="copy-btn" onclick="copyCommand(this)"> Kopiér</button>
+                        </li>
+
                     </ul>
+
+
                 </div>
 
                 <div class="subject" data-subject="type-coercion">
@@ -118,14 +129,115 @@
                         <li></li>
                     </ul>
                 </div>
-
-
             </div>
 
+            <div class="subjects" data-topic="First-Server">
+                <div class="subject" data-subject="code-conventions">
+                    <h2>Code Conventions / Clean Code (Strict Mode - ESLint)</h2>
+                    <ul>
+                        <li></li>
+                    </ul>
+                </div>
 
+                <div class="subject" data-subject="variables-functions">
+                    <h2>Variables and Functions</h2>
+                    <ul>
+                        <li></li>
+                    </ul>
+                </div>
+
+                <div class="subject" data-subject="callback-functions">
+                    <h2>Callback Functions</h2>
+                    <ul>
+                        <li></li>
+                    </ul>
+                </div>
+
+                <div class="subject" data-subject="build-tools-package-managers">
+                    <h2>Build Tools and Package Managers</h2>
+                    <ul>
+                        <li></li>
+                    </ul>
+                </div>
+
+                <div class="subject" data-subject="package-json">
+                    <h2>Package.json</h2>
+                    <ul>
+                        <li></li>
+                    </ul>
+                </div>
+
+                <div class="subject" data-subject="express">
+                    <h2>Express</h2>
+                    <ul>
+                        <li></li>
+                    </ul>
+                </div>
+
+                <div class="subject" data-subject="get-requests">
+                    <h2>Sending Data with GET Requests</h2>
+                    <ul>
+                        <li></li>
+                    </ul>
+                </div>
+
+                <div class="subject" data-subject="scoping-js">
+                    <h2>Understand Scoping in JavaScript and use const/let correctly</h2>
+                    <ul>
+                        <li></li>
+                    </ul>
+                </div>
+
+                <div class="subject" data-subject="advanced-functions">
+                    <h2>Understand Advanced Things About Functions in JavaScript</h2>
+                    <ul>
+                        <li></li>
+                    </ul>
+                </div>
+
+                <div class="subject" data-subject="callback-syntax">
+                    <h2>Can Write Callback Functions with Different Syntax</h2>
+                    <ul>
+                        <li></li>
+                    </ul>
+                </div>
+
+                <div class="subject" data-subject="npm">
+                    <h2>Understands the Function of NPM and Comparison with Other Package Managers</h2>
+                    <ul>
+                        <li></li>
+                    </ul>
+                </div>
+
+                <div class="subject" data-subject="package-json-setup">
+                    <h2>Understands the Purposes of Package.json and Can Set It Up by Hand</h2>
+                    <ul>
+                        <li></li>
+                    </ul>
+                </div>
+
+                <div class="subject" data-subject="express-server">
+                    <h2>Can Create a Server with Express from Memory</h2>
+                    <ul>
+                        <li></li>
+                    </ul>
+                </div>
+
+                <div class="subject" data-subject="express-get">
+                    <h2>Understands How to Send Data with GET Requests in Express</h2>
+                    <ul>
+                        <li></li>
+                    </ul>
+                </div>
+
+                <div class="subject" data-subject="node-modules">
+                    <h2>Understands node_modules</h2>
+                    <ul>
+                        <li></li>
+                    </ul>
+                </div>
+            </div>
         </div>
-
-
     </section>
 
 </body>
