@@ -45,14 +45,21 @@ const greekGods = [
     }
 ];
 
+
+// res.json er legacy 
 app.get("/greekgods", (req, res) => {
-    res.send(greekGods)
+    res.send({data: greekGods})
 });
 
-app.get("/greekgods/:name", (req, res) => {
+
+// man skal altid tjekke fejl først - det gør jeg ikke i nedenstående kode
+app.get("/greekgods/:id", (req, res) => {
+
     greekGods.forEach(god => {
-        if (god.name === req.params.name){
-            res.send(god)
+        if (god.id === Number(req.params.id)){
+            res.send({data: god})
+        } else {
+            res.status(404).send( {errorMessage: `Greek god not found with ID: ${req.params.id}`})
         }
     });
 });
