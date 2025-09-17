@@ -73,11 +73,21 @@ app.post("/greekgods", (req, res) => {
         domain: req.body.domain,
         symbol: req.body.symbol
     }
-
-   
     greekGods.push(newGod);
-
     res.status(201).json(newGod);
+});
+
+app.delete("/greekgods/:id", (req, res) => {
+
+    const id = Number(req.params.id);
+    const index = greekGods.findIndex(god => god.id === id);
+    
+    if (index !== -1) {
+        greekGods.splice(index, 1);
+        res.status(200).json({ message: "God deleted" });
+    } else {
+        res.status(404).json({ message: "God not found" });
+    }
 });
 
 app.listen("8080");
