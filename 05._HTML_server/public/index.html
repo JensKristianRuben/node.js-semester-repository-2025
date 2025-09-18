@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+    <link rel="stylesheet" href="styles.css">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snakes</title>
+</head>
+<body>
+    <h1 style="color: greenyellow">Welcomessss ToSsss mYs Snakesssss Sitesssss</h1>
+    
+</body>
+
+<script>
+    fetch("/visitorsCount")
+    .then((res) => res.json())
+    .then((result) => {
+        console.log(result.data);
+        
+    });
+</script>
+</html>
