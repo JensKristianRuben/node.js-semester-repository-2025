@@ -45,10 +45,12 @@ const greekGods = [
     }
 ];
 
+let nextId = 6;
+
 
 // res.json er legacy 
 app.get("/greekgods", (req, res) => {
-    res.send({data: greekGods})
+    res.send({ data: greekGods })
 });
 
 
@@ -56,38 +58,77 @@ app.get("/greekgods", (req, res) => {
 app.get("/greekgods/:id", (req, res) => {
 
     greekGods.forEach(god => {
-        if (god.id === Number(req.params.id)){
-            res.send({data: god})
+        if (god.id === Number(req.params.id)) {
+            res.send({ data: god })
         } else {
-            res.status(404).send( {errorMessage: `Greek god not found with ID: ${req.params.id}`})
+            res.status(404).send({ errorMessage: `Greek god not found with ID: ${req.params.id}` })
         }
     });
 });
 
 app.post("/greekgods", (req, res) => {
 
-    const newGod = {
-        id: greekGods.length + 1,
-        name: req.body.name,
-        age: req.body.age,
-        domain: req.body.domain,
-        symbol: req.body.symbol
+    if (!req.body) {
+        return res.status(400).send({ errorMessage: "Requires a JSON body" })
     }
-    greekGods.push(newGod);
-    res.status(201).json(newGod);
+    let newGreekGod = req.body;
+    newGreekGod.id = nextId++;
+    greekGods.push(newGreekGod);
+
+    res.status(201).send({ data: newGreekGod });
 });
 
+app.patch("/greekgods/:id", (req, res) => {
+    const id = Number(req.params.id);
+    const god = greekGods.find(god => god.id === id);
+
+    if (!god) {
+        res.status(404).send({ errorMessage: `Greek god not found with ID: ${id}` });
+
+    } else {
+        Object.assign(god, req.body);
+        res.send({ data: god });
+    }
+});
+
+app.put("/greekgods/:id", (req, res) => {
+    const id = Number(req.params.id);
+    const index = greekGods.findIndex(god => god.id === id);
+
+    if (index !== -1) {
+        greekGods[index] = {
+            id: id,
+            name: req.body.name,
+            age: req.body.age,
+            domain: req.body.domain,
+            symbol: req.body.symbol
+        };
+        res.send({ data: greekGods[index] });
+    } else {
+        res.status(404).send({ errorMessage: `Greek god not found with ID: ${id}` });
+    }
+});
+
+
+
+// we want to fail as early as possible - this logic needs to be turned around
 app.delete("/greekgods/:id", (req, res) => {
 
     const id = Number(req.params.id);
     const index = greekGods.findIndex(god => god.id === id);
-    
+
     if (index !== -1) {
         greekGods.splice(index, 1);
-        res.status(200).json({ message: "God deleted" });
+        res.status(200).send({ message: "God deleted" });
     } else {
-        res.status(404).json({ message: "God not found" });
+        res.status(404).send({ message: "God not found" });
     }
 });
 
-app.listen("8080");
+
+const PORT = 8080;
+
+app.listen(PORT, (error) => {
+    console.log("Server running on port:", PORT);
+
+});
