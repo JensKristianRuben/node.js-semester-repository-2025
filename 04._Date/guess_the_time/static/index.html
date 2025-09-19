@@ -20,6 +20,7 @@
     }
 
     .time-input {
+      display: none;
       font-size: 1.5rem;
       padding: 0.5rem 1rem;
       text-align: center;
@@ -31,6 +32,7 @@
     /* ANALOG UR */
 
     .analog-clock {
+      display: none;
       width: 20rem;
       height: 20rem;
       border: 4px solid #333;
@@ -80,6 +82,20 @@
       width: 3px;
       height: 8px;
     }
+
+    .start-button {
+      width: 10rem;
+      height: 5rem;
+      background-color: white;
+      border: 2px solid black;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    .start-button:hover {
+      border-color: rgb(21, 165, 21);
+      color: green;
+    }
   </style>
   <head>
     <meta charset="UTF-8" />
@@ -87,13 +103,12 @@
     <title>Gæt klokken</title>
   </head>
   <body>
-    <h1>Gæt klokken</h1>
-    <!-- <div class="timestamp" id="timestamp"></div> -->
+    <button class="start-button" id="startButton">START</button>
     <div class="analog-clock" id="timestamp">
       <div class="hand hour-hand"></div>
       <div class="hand minute-hand"></div>
       <div class="marker hour-marker" style="--rotation: 0deg"></div>
-      <div class="marker hour-marker" style="--rotation: 30deg"></div>
+      <div class="marker hour0-marker" style="--rotation: 30deg"></div>
       <div class="marker hour-marker" style="--rotation: 60deg"></div>
       <div class="marker hour-marker" style="--rotation: 90deg"></div>
       <div class="marker hour-marker" style="--rotation: 120deg"></div>
@@ -131,28 +146,38 @@
       timeInput.value = digits;
     });
 
-    fetch("http://localhost:8080/time")
+    //   Start button
+    const timeStamp = document.getElementById("timestamp");
+    const startButton = document.getElementById("startButton");
+    startButton.addEventListener("click", () => {
+      timeInput.style.display = "block";
+      timeStamp.style.display = "block";
+      startButton.style.display = "none";
+
+      for (let i = 0; i <= 10; i++){
+        setTimeout(gueesTheClock, 5000)
+      }
+    });
+
+    function gueesTheClock(){
+        fetch("http://localhost:8080/time")
       .then((res) => res.json())
       .then((data) => {
         const timestamp = document.getElementById("timestamp");
         const hourHand = document.querySelector(".hour-hand");
         const minuteHand = document.querySelector(".minute-hand");
 
-        
-        
-
         let timestampInHHMM = data.data.split(".").slice(0, 2).join(":");
 
-        const regex = /^[1-9]/;
+        const regex = /^([1-9]):/;
         if (regex.test(timestampInHHMM)) {
-            timestampInHHMM = "0" + timestampInHHMM;
+          timestampInHHMM = "0" + timestampInHHMM;
         }
         const [hours, minutes] = timestampInHHMM.split(":");
 
         console.log(data.data);
-        
+
         console.log(timestampInHHMM);
-        
 
         // Beregn rotationsgraderne
         // 1 time = 30 grader (360 / 12 timer)
@@ -170,15 +195,20 @@
         document.addEventListener("keypress", (event) => {
           if (event.key === "Enter") {
             timeInput.blur();
-            if (timeInput.value === timestamp.innerText) {
+            if (timeInput.value === timestampInHHMM) {
               console.log("CORRECT");
+              console.log("you guess: ", timeInput.value);
+              console.log("Correct answer: ", timestampInHHMM);
 
               timeInput.style.borderColor = "#26ff00";
             } else {
+              console.log("you guess: ", timeInput.value);
+              console.log("Correct answer: ", timestampInHHMM);
               timeInput.style.borderColor = "red";
             }
           }
         });
       });
+    }
   </script>
 </html>
