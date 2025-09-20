@@ -96,6 +96,24 @@
       border-color: rgb(21, 165, 21);
       color: green;
     }
+
+    .point-counter-wrapper {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      margin: 2rem;
+    }
+    .point-counter {
+      font-size: 2rem;
+    }
+
+    .timer {
+        position: fixed;
+        top: 20px;
+        width: 5rem;
+        height: 5rem;
+        font-size: 2rem;
+    }
   </style>
   <head>
     <meta charset="UTF-8" />
@@ -104,11 +122,20 @@
   </head>
   <body>
     <button class="start-button" id="startButton">START</button>
+    <div class="point-counter-wrapper">
+      <div>
+        <span class="point-counter" id="pointCounter">0</span> /
+        <span class="point-counter">10</span>
+      </div>
+      
+
+    </div>
+    <div class="timer" id="timer"></div>
     <div class="analog-clock" id="timestamp">
       <div class="hand hour-hand"></div>
       <div class="hand minute-hand"></div>
       <div class="marker hour-marker" style="--rotation: 0deg"></div>
-      <div class="marker hour0-marker" style="--rotation: 30deg"></div>
+      <div class="marker hour-marker" style="--rotation: 30deg"></div>
       <div class="marker hour-marker" style="--rotation: 60deg"></div>
       <div class="marker hour-marker" style="--rotation: 90deg"></div>
       <div class="marker hour-marker" style="--rotation: 120deg"></div>
@@ -124,6 +151,16 @@
     <input type="text" maxlength="5" id="time-input" class="time-input" />
   </body>
   <script>
+    const timeStamp = document.getElementById("timestamp");
+    const startButton = document.getElementById("startButton");
+    let counter = 0;
+    const maxRuns = 10;
+    let points = 0;
+    let pointCounter = document.getElementById("pointCounter");
+    let countDown = document.getElementById("timer");
+    let gameActive = false;
+    let gameTimer = 30;
+
     // TIME INPUT RULES ------------------------------
     const timeInput = document.getElementById("time-input");
     timeInput.addEventListener("input", () => {
@@ -146,68 +183,83 @@
       timeInput.value = digits;
     });
 
-    //   Start button
-    const timeStamp = document.getElementById("timestamp");
-    const startButton = document.getElementById("startButton");
-    startButton.addEventListener("click", () => {
-      timeInput.style.display = "block";
-      timeStamp.style.display = "block";
-      startButton.style.display = "none";
+    startButton.addEventListener("click", startGame);
 
-      for (let i = 0; i <= 10; i++){
-        setTimeout(gueesTheClock, 5000)
-      }
-    });
+    function startGame() {
+      startButton.addEventListener("click", () => {
+        timeInput.style.display = "block";
+        timeStamp.style.display = "block";
+        startButton.style.display = "none";
 
-    function gueesTheClock(){
-        fetch("http://localhost:8080/time")
-      .then((res) => res.json())
-      .then((data) => {
-        const timestamp = document.getElementById("timestamp");
-        const hourHand = document.querySelector(".hour-hand");
-        const minuteHand = document.querySelector(".minute-hand");
+        gameActive = true;
+        fetchTime();
 
-        let timestampInHHMM = data.data.split(".").slice(0, 2).join(":");
+        const timer = setInterval(() => {
+            countDown.innerText = gameTimer;
+            gameTimer--;
 
-        const regex = /^([1-9]):/;
-        if (regex.test(timestampInHHMM)) {
-          timestampInHHMM = "0" + timestampInHHMM;
-        }
-        const [hours, minutes] = timestampInHHMM.split(":");
-
-        console.log(data.data);
-
-        console.log(timestampInHHMM);
-
-        // Beregn rotationsgraderne
-        // 1 time = 30 grader (360 / 12 timer)
-        const hourRotation =
-          (parseInt(hours, 10) % 12) * 30 + (parseInt(minutes, 10) / 60) * 30;
-        // 1 minut = 6 grader (360 / 60 minutter)
-        const minuteRotation = parseInt(minutes, 10) * 6;
-
-        // Sæt rotationsstilen på viserne
-        hourHand.style.transform = `rotate(${hourRotation + 90}deg)`;
-        minuteHand.style.transform = `rotate(${minuteRotation + 90}deg)`;
-
-        // DOM ENTER EVENTLISTNER ---------------------
-
-        document.addEventListener("keypress", (event) => {
-          if (event.key === "Enter") {
-            timeInput.blur();
-            if (timeInput.value === timestampInHHMM) {
-              console.log("CORRECT");
-              console.log("you guess: ", timeInput.value);
-              console.log("Correct answer: ", timestampInHHMM);
-
-              timeInput.style.borderColor = "#26ff00";
-            } else {
-              console.log("you guess: ", timeInput.value);
-              console.log("Correct answer: ", timestampInHHMM);
-              timeInput.style.borderColor = "red";
+            if (gameTimer < 0) {
+                clearInterval(timer);
+                alert("Time ran out!!!!")
             }
+
+        }, 1000)
+      });
+    }
+
+    function fetchTime() {
+      fetch("http://localhost:8080/time")
+        .then((res) => res.json())
+        .then((data) => {
+          const timestamp = document.getElementById("timestamp");
+          const hourHand = document.querySelector(".hour-hand");
+          const minuteHand = document.querySelector(".minute-hand");
+
+          let timestampInHHMM = data.data.split(".").slice(0, 2).join(":");
+
+          const regex = /^([1-9]):/;
+          if (regex.test(timestampInHHMM)) {
+            timestampInHHMM = "0" + timestampInHHMM;
           }
+          const [hours, minutes] = timestampInHHMM.split(":");
+
+          console.log(timestampInHHMM);
+
+          const hourRotation =
+            (parseInt(hours, 10) % 12) * 30 + (parseInt(minutes, 10) / 60) * 30;
+
+          const minuteRotation = parseInt(minutes, 10) * 6;
+
+          hourHand.style.transform = `rotate(${hourRotation + 90}deg)`;
+          minuteHand.style.transform = `rotate(${minuteRotation + 90}deg)`;
+
+          counter++;
         });
+    }
+
+    function checkAnswer() {
+      document.addEventListener("keypress", (event) => {
+        if (event.key === "Enter") {
+          timeInput.blur();
+          if (timeInput.value === timestampInHHMM && counter < maxRuns) {
+            console.log("CORRECT");
+            console.log("you guess: ", timeInput.value);
+            console.log("Correct answer: ", timestampInHHMM);
+
+            timeInput.style.borderColor = "#26ff00";
+
+            points++;
+            pointCounter.innerText = `${points}`;
+            setTimeout(fetchTime, 5000);
+          } else if (timeInput.value !== timestampInHHMM && counter < maxRuns) {
+            console.log("you guess: ", timeInput.value);
+            console.log("Correct answer: ", timestampInHHMM);
+            timeInput.style.borderColor = "red";
+            setTimeout(fetchTime, 5000);
+          }
+        } else if (counter > maxRuns) {
+          alert("SPILLET ER SLUT - points: ", points);
+        }
       });
     }
   </script>
