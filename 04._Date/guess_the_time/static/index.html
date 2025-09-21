@@ -227,7 +227,7 @@
 
     let timestampInHHMMGlobal = null;
     function fetchTime() {
-      fetch("http://localhost:8080/time")
+      fetch("/time")
         .then((res) => res.json())
         .then((data) => {
           const timestamp = document.getElementById("timestamp");
