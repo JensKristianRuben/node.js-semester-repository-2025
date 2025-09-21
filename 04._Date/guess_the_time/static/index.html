@@ -108,11 +108,30 @@
     }
 
     .timer {
-        position: fixed;
-        top: 20px;
-        width: 5rem;
-        height: 5rem;
-        font-size: 2rem;
+      position: fixed;
+      top: 20px;
+      width: 5rem;
+      height: 5rem;
+      font-size: 2rem;
+    }
+
+    .pointsShowed {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      width: 400px;
+      margin: 50px auto;
+      padding: 30px;
+
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      color: #fff;
+      border-radius: 20px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+
+      font-family: "Arial", sans-serif;
+      text-align: center;
     }
   </style>
   <head>
@@ -124,11 +143,9 @@
     <button class="start-button" id="startButton">START</button>
     <div class="point-counter-wrapper">
       <div>
-        <span class="point-counter" id="pointCounter">0</span> /
-        <span class="point-counter">10</span>
+        Points:
+        <span class="point-counter" id="pointCounter">0</span>
       </div>
-      
-
     </div>
     <div class="timer" id="timer"></div>
     <div class="analog-clock" id="timestamp">
@@ -159,7 +176,7 @@
     let pointCounter = document.getElementById("pointCounter");
     let countDown = document.getElementById("timer");
     let gameActive = false;
-    let gameTimer = 30;
+    let gameTimer = 60;
 
     // TIME INPUT RULES ------------------------------
     const timeInput = document.getElementById("time-input");
@@ -183,7 +200,8 @@
       timeInput.value = digits;
     });
 
-    startButton.addEventListener("click", startGame);
+    startGame();
+    // startButton.addEventListener("click", startGame);
 
     function startGame() {
       startButton.addEventListener("click", () => {
@@ -193,20 +211,21 @@
 
         gameActive = true;
         fetchTime();
+        checkAnswer();
 
         const timer = setInterval(() => {
-            countDown.innerText = gameTimer;
-            gameTimer--;
+          countDown.innerText = gameTimer;
+          gameTimer--;
 
-            if (gameTimer < 0) {
-                clearInterval(timer);
-                alert("Time ran out!!!!")
-            }
-
-        }, 1000)
+          if (gameTimer < 0) {
+            clearInterval(timer);
+            endGame();
+          }
+        }, 1000);
       });
     }
 
+    let timestampInHHMMGlobal = null;
     function fetchTime() {
       fetch("http://localhost:8080/time")
         .then((res) => res.json())
@@ -222,6 +241,8 @@
             timestampInHHMM = "0" + timestampInHHMM;
           }
           const [hours, minutes] = timestampInHHMM.split(":");
+
+          timestampInHHMMGlobal = timestampInHHMM;
 
           console.log(timestampInHHMM);
 
@@ -241,26 +262,40 @@
       document.addEventListener("keypress", (event) => {
         if (event.key === "Enter") {
           timeInput.blur();
-          if (timeInput.value === timestampInHHMM && counter < maxRuns) {
+          if (timeInput.value === timestampInHHMMGlobal && counter < maxRuns) {
             console.log("CORRECT");
             console.log("you guess: ", timeInput.value);
-            console.log("Correct answer: ", timestampInHHMM);
+            console.log("Correct answer: ", timestampInHHMMGlobal);
 
             timeInput.style.borderColor = "#26ff00";
 
             points++;
             pointCounter.innerText = `${points}`;
-            setTimeout(fetchTime, 5000);
-          } else if (timeInput.value !== timestampInHHMM && counter < maxRuns) {
+            setTimeout(fetchTime, 1000);
+          } else if (
+            timeInput.value !== timestampInHHMMGlobal &&
+            counter < maxRuns
+          ) {
             console.log("you guess: ", timeInput.value);
-            console.log("Correct answer: ", timestampInHHMM);
+            console.log("Correct answer: ", timestampInHHMMGlobal);
             timeInput.style.borderColor = "red";
-            setTimeout(fetchTime, 5000);
+            setTimeout(fetchTime, 1000);
           }
         } else if (counter > maxRuns) {
           alert("SPILLET ER SLUT - points: ", points);
         }
       });
+    }
+
+    function endGame() {
+      document.body.innerHTML = "";
+
+      const pointsShowed = document.createElement("div");
+      pointsShowed.classList = "pointsShowed";
+
+      pointsShowed.textContent = `Du fik: ${points} points`;
+
+      document.body.appendChild(pointsShowed);
     }
   </script>
 </html>
