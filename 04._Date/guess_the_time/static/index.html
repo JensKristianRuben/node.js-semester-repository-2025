@@ -21,21 +21,24 @@
 
     .time-input {
       display: none;
-      font-size: 1.5rem;
-      padding: 0.5rem 1rem;
-      text-align: center;
       width: 150px;
       border: 2px solid #333;
       border-radius: 8px;
+      font-family: "Orbitron", sans-serif;
+      text-align: center;
+      color: #000000;
+      border-radius: 1rem;
+      letter-spacing: 0.3em;
+      line-height: 2em;
+      font-size: 1.2rem;
+      text-transform: uppercase;
     }
-
-    /* ANALOG UR */
 
     .analog-clock {
       display: none;
       width: 20rem;
       height: 20rem;
-      border: 4px solid #333;
+      border: 2px solid #333;
       border-radius: 50%;
       position: relative;
     }
@@ -71,43 +74,58 @@
       background-color: #333;
     }
 
-    /* Stil for timemarkeringer */
     .hour-marker {
       width: 5px;
       height: 15px;
     }
 
-    /* Stil for minutmarkeringer (du kan tilføje dem på samme måde) */
     .minute-marker {
       width: 3px;
       height: 8px;
     }
 
     .start-button {
-      width: 10rem;
-      height: 5rem;
-      background-color: white;
-      border: 2px solid black;
-      border-radius: 10px;
+      font-family: "Orbitron", sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      padding: 1rem 2.5rem;
+      font-size: 1.1rem;
+      border: 2px solid #000000;
+      color: #000000;
+      border-radius: 1.5rem;
       cursor: pointer;
+      transition: all 0.3s ease;
     }
 
     .start-button:hover {
-      border-color: rgb(21, 165, 21);
-      color: green;
+      background: #8eef88;
+      color: #0d0d0d;
+      box-shadow: 0 0 15px #b9ffb5;
     }
 
     .point-counter-wrapper {
+      display: none;
       position: fixed;
       top: 20px;
       left: 20px;
       margin: 2rem;
+      font-family: "Orbitron", sans-serif;
+      text-align: center;
+      color: #000000;
+      padding: 2rem;
+      border-radius: 1rem;
+      letter-spacing: 0.3em;
+      line-height: 2em;
+      font-size: 1.2rem;
+      text-transform: uppercase;
     }
     .point-counter {
       font-size: 2rem;
     }
 
     .timer {
+      display: flex;
+      justify-content: center;
       position: fixed;
       top: 20px;
       width: 5rem;
@@ -117,37 +135,101 @@
 
     .pointsShowed {
       display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-
-      width: 400px;
-      margin: 50px auto;
-      padding: 30px;
-
-      background: linear-gradient(135deg, #1e3c72, #2a5298);
-      color: #fff;
-      border-radius: 20px;
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-
-      font-family: "Arial", sans-serif;
+      width: 150px;
+      border: 2px solid #333;
+      border-radius: 8px;
+      font-family: "Orbitron", sans-serif;
       text-align: center;
+      color: #000000;
+      border-radius: 1rem;
+      letter-spacing: 0.3em;
+      line-height: 2em;
+      font-size: 1.2rem;
+      text-transform: uppercase;
+    }
+    .README {
+      width: 40rem;
+      font-family: "Orbitron", sans-serif;
+      text-align: center;
+      color: #000000;
+      padding: 2rem;
+      border-radius: 1rem;
+      letter-spacing: 0.3em;
+      line-height: 2em;
+      font-size: 1.2rem;
+      text-transform: uppercase;
+    }
+
+    @keyframes vibrate {
+      0% {
+        transform: translate(0);
+      }
+      20% {
+        transform: translate(-2px, 2px);
+      }
+      40% {
+        transform: translate(-2px, -2px);
+      }
+      60% {
+        transform: translate(2px, 2px);
+      }
+      80% {
+        transform: translate(2px, -2px);
+      }
+      100% {
+        transform: translate(0);
+      }
+    }
+
+    .correct {
+      border-color: #26ff00 !important;
+      box-shadow: 0 0 20px #26ff00;
+      animation: vibrate 0.3s linear 2;
+    }
+
+    .wrong {
+      border-color: red !important;
+      box-shadow: 0 0 20px red;
+      animation: vibrate 0.3s linear 2;
+    }
+    .tricky-btn {
+      position: absolute;
+      top: 20px;
+      font-family: "Orbitron", sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      padding: 1rem 2rem;
+      font-size: 1.1rem;
+      border: 2px solid #000000;
+      color: #000000;
+      background: transparent;
+      border-radius: 1rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
     }
   </style>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+
     <title>Gæt klokken</title>
   </head>
   <body>
-    <button class="start-button" id="startButton">START</button>
-    <div class="point-counter-wrapper">
-      <div>
-        Points:
-        <span class="point-counter" id="pointCounter">0</span>
-      </div>
+    <div class="README" id="README">
+      LÆSMIG: Gæt så mange klokkeslæt som muligt på 60 sekunder. Se uret, skriv
+      dit bud i boksen, og tryk Enter. Grøn = rigtigt. Rød = forkert. Held og
+      lykke!
     </div>
-    <div class="timer" id="timer"></div>
+    <button class="start-button" id="startButton">START</button>
+    <div class="point-counter-wrapper" id="pointsCounterWrapper">
+      Points:
+      <span class="point-counter" id="pointCounter">0</span>
+      <div class="timer" id="timer"></div>
+    </div>
     <div class="analog-clock" id="timestamp">
       <div class="hand hour-hand"></div>
       <div class="hand minute-hand"></div>
@@ -170,15 +252,17 @@
   <script>
     const timeStamp = document.getElementById("timestamp");
     const startButton = document.getElementById("startButton");
+    const pointsCounterWrapper = document.getElementById(
+      "pointsCounterWrapper"
+    );
+    const README = document.getElementById("README");
     let counter = 0;
-    const maxRuns = 10;
     let points = 0;
     let pointCounter = document.getElementById("pointCounter");
     let countDown = document.getElementById("timer");
     let gameActive = false;
     let gameTimer = 60;
 
-    // TIME INPUT RULES ------------------------------
     const timeInput = document.getElementById("time-input");
     timeInput.addEventListener("input", () => {
       let digits = timeInput.value.replace(/\D/g, "");
@@ -201,13 +285,15 @@
     });
 
     startGame();
-    // startButton.addEventListener("click", startGame);
 
     function startGame() {
       startButton.addEventListener("click", () => {
         timeInput.style.display = "block";
         timeStamp.style.display = "block";
+        pointsCounterWrapper.style.display = "block";
+
         startButton.style.display = "none";
+        README.style.display = "none";
 
         gameActive = true;
         fetchTime();
@@ -262,27 +348,34 @@
       document.addEventListener("keypress", (event) => {
         if (event.key === "Enter") {
           timeInput.blur();
-          if (timeInput.value === timestampInHHMMGlobal && counter < maxRuns) {
+          if (timeInput.value === timestampInHHMMGlobal) {
             console.log("CORRECT");
             console.log("you guess: ", timeInput.value);
+            timeInput.focus();
             console.log("Correct answer: ", timestampInHHMMGlobal);
 
             timeInput.style.borderColor = "#26ff00";
+            timestamp.classList.add("correct");
+            timeInput.value = "";
 
             points++;
             pointCounter.innerText = `${points}`;
             setTimeout(fetchTime, 1000);
-          } else if (
-            timeInput.value !== timestampInHHMMGlobal &&
-            counter < maxRuns
-          ) {
+            setTimeout(() => {
+              timeStamp.classList.remove("correct");
+            }, 1000);
+          } else if (timeInput.value !== timestampInHHMMGlobal) {
             console.log("you guess: ", timeInput.value);
             console.log("Correct answer: ", timestampInHHMMGlobal);
+            timeInput.value = "";
+            timeInput.focus();
             timeInput.style.borderColor = "red";
+            timestamp.classList.add("wrong");
             setTimeout(fetchTime, 1000);
+            setTimeout(() => {
+              timeStamp.classList.remove("wrong");
+            }, 1000);
           }
-        } else if (counter > maxRuns) {
-          alert("SPILLET ER SLUT - points: ", points);
         }
       });
     }
@@ -296,6 +389,23 @@
       pointsShowed.textContent = `Du fik: ${points} points`;
 
       document.body.appendChild(pointsShowed);
+
+      const trickyBtn = document.createElement("button");
+      trickyBtn.textContent = "Prøv igen?";
+      trickyBtn.className = "tricky-btn";
+      document.body.appendChild(trickyBtn);
+
+      trickyBtn.addEventListener("mouseover", () => {
+        const maxX = window.innerWidth - trickyBtn.offsetWidth;
+        const maxY = window.innerHeight - trickyBtn.offsetHeight;
+
+        const newX = Math.floor(Math.random() * maxX);
+        const newY = Math.floor(Math.random() * maxY);
+
+        trickyBtn.style.left = newX + "px";
+        trickyBtn.style.top = newY + "px";
+        trickyBtn.style.position = "absolute";
+      });
     }
   </script>
 </html>
