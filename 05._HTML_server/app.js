@@ -1,24 +1,46 @@
-const express = require("express");
+import express from "express";
 
 const app = express();
 
-app.use(express.static("public")); // Sørger for at 
+import path from "path";
+
+app.use(express.static("public")); // Sørger for at importere hele public mappen
+
+// import candyCommon from "./util/candyCommon.js";
+
+import candyESModule from "./util/candyESModule.js"
+
+// console.log(candyCommon);
+
+console.log(candyESModule);
+
+
+
 
 let visitorsCounter = 0;
 
 
 app.get("/", (req, res) => {
     // visitorsCounter++;
-    res.sendFile(__dirname + "/public/index.html")
+    res.sendFile(path.resolve("public/frontend/index.html"));
 })
 
 app.get("/candy", (req, res) => {
-    res.sendFile(__dirname + "/public/candy/candy.html");
+    res.sendFile(path.resolve("public/candy/candy.html"));
 }) 
+
+app.get("/redirection", (req, res) => {
+    res.sendFile(path.resolve("public/redirection/redirection.html"));
+})
 
 app.get("/visitorsCount", (req, res) => {
     res.send({data: ++visitorsCounter})
 })
+
+app.get("/visitorsdoorway", (req, res) => {
+    res.redirect("/visitorsCount")
+})
+
 
 
 
