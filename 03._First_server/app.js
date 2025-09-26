@@ -9,7 +9,7 @@ app.use(express.json());
 
 //get functionen har 2 argumenter - endpointet og callbackfuntionen - callbackfunktionen har også 2 argumenter.
 app.get("/", (req, res) => {
-    res.send("Hello from express!")
+    res.send({data: `message: Hello from express!`})
 })
 
 

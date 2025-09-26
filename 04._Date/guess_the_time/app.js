@@ -1,6 +1,6 @@
-const exprres = require("express");
+const express = require("express");
 
-const app = exprres();
+const app = express();
 
 
 app.get("/time", (req, res) => {

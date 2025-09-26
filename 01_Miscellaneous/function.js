@@ -29,6 +29,29 @@ const runningAction = (name) => {
      return `${name} enjoys running.`;
 }
 
+//Callback and higher order function
+
+const numbers = [1, 4, 23, 10, 12, 42, 101, 82]
+                                                    
+const filteredNumbers = numbers.filter(isOlderThan10); // [ 23, 12, 42, 101, 82 ]
+
+function isOlderThan10(value) {
+    return value > 10
+}
+
+const moreFilteredNumbers = numbers.filter(function(value){
+    return value > 10
+})
+
+const evenMoreFilterdNumbers = numbers.filter(value => value > 10)
+
+const superEvenMoreFilteredNumbers = numbers.filter(value => {
+    console.log("Checking.. Checking.. number: ", value);
+    return value > 10
+})
+
+
+
 
 
 
