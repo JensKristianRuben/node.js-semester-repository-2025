@@ -8,18 +8,41 @@
 
 console.log("loop methods:");
 
-const numbers = [1, 2, 3, 4, 5];
+// const numbers = [1, 2, 3, 4, 5];
 
 // numbers.forEach(element => console.log(element  * 2)
 // )
 
-const evenNumbers = numbers.filter(number => number % 2 === 0)
+// const evenNumbers = numbers.filter(number => number % 2 === 0)
 
-console.log("even numbers: ", evenNumbers);
+// console.log("even numbers: ", evenNumbers);
 
 
-const numberFour = numbers.find(number => number === 4);
-console.log("number is: ", numberFour);
+// const numberFour = numbers.find(number => number === 4);
+// console.log("number is: ", numberFour);
+
+
+let numberOfIterations = 1;
+
+while (numberOfIterations <= 5) {
+    console.log("Iteration:", numberOfIterations);
+    numberOfIterations++;
+}
+
+
+// Functional programming
+
+const numbers = [1, 2, 3, 4];
+let doubled = [];
+
+numbers.forEach(number => {
+    doubled.push(number * 2)
+})
+
+console.log("Numbers doubled: ", doubled);
+
+const numbersWithoutSideEffect = numbers.map(number => number * 2 )
+console.log("without: ", numbersWithoutSideEffect);
 
 
 
