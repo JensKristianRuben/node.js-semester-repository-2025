@@ -10,6 +10,20 @@ console.log("loop methods:");
 
 const numbers = [1, 2, 3, 4, 5];
 
+// numbers.forEach(element => console.log(element  * 2)
+// )
+
+const evenNumbers = numbers.filter(number => number % 2 === 0)
+
+console.log("even numbers: ", evenNumbers);
+
+
+const numberFour = numbers.find(number => number === 4);
+console.log("number is: ", numberFour);
+
+
+
+
 // .map returnere et ny array
 const newNumbers = numbers.map((element) => element * 2)
 
