@@ -1,34 +1,26 @@
 #logo {
-    height: 15vh;
-    width: 15vh;
-    border-radius: 10px;
+    height: 12vh;
+    border-radius: 50%;
 }
-body {
-    display: flex;
+
+/* nav {
+    height: 15vh;
 }
 
 main {
-    /* height: 90vh; */
-    border: 2px solid rgb(137, 21, 21);
-    flex: 1;
+    min-height: calc(100vh - 30vh)
 }
-
-
-h1 {
-    border: 2px solid black;
-}
-
-
-.navigation-bar {
-    width: 100vw;
-    height: 5vh;
-    background-color: aliceblue;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-}
-
 
 footer {
-    border: 2px solid black;
+    height: 5vh;
+} */
+
+body {
+    min-height: 95vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
 }
