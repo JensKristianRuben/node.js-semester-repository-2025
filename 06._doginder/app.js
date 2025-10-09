@@ -12,12 +12,26 @@ app.use(express.static("public"))
 
 
 // ========================================== PAGES ==========================================
+
+// import fs from 'fs'
+
+
+// //blokere når vi starter appen op - derfor vil vi gerne have den uden for selve endpointet
+// const frontpagePage = fs.readFileSync("./public/pages/frontend/index.html").toString();
+// const matchesPage = fs.readFileSync("./public/pages/matches/matches.html").toString();
+
+// const header = fs.readFileSync("./public/components/header/header.html").toString();
+// const footer = fs.readFileSync("./public/components/footer/footer.html").toString();
+
+
+import { frontpagePage, matchesPage } from './util/pageUtil.js';
+
 app.get("/", (req, res) => {
-    res.sendFile(path.resolve("public/pages/frontend/index.html"))
+    res.send(header + frontpagePage + footer)
 })
 
 app.get("/matches", (req, res) => {
-    res.sendFile(path.resolve("public/pages/matches/matches.html"))
+    res.sendFile(header + matchesPage + footer)
 })
 
 
