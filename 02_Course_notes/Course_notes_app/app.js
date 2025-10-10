@@ -1,5 +1,5 @@
 import express from 'express'
-// import path from "path"
+import path from "path"
 import fs from 'fs'
 import ServerlessHttp from 'serverless-http';
 
@@ -32,7 +32,7 @@ app.get("/api/hello", (req, res) => {
 // ========================================PAGES========================================
 
 
-const indexPage = fs.readFileSync("./public/index.html").toString();
+const indexPage = fs.readFileSync(path.resolve("./public/index.html")).toString();
 
 
 app.get("/", (req, res) => {
