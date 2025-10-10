@@ -32,12 +32,12 @@ app.get("/api/hello", (req, res) => {
 // ========================================PAGES========================================
 
 
-const indexPage = fs.readFileSync(path.resolve("./public/index.html"), "utf8")
+// const indexPage = fs.readFileSync(path.resolve("./public/index.html"), "utf8")
 
 
-app.get("/", (req, res) => {
-    res.send(indexPage)
-})
+// app.get("/", (req, res) => {
+//     res.send(indexPage)
+// })
 
 
 
