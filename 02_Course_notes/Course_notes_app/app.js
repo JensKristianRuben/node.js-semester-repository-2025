@@ -9,10 +9,7 @@ app.get("/", (req, res) => {
     res.sendFile(path.resolve("public/index.html"))
 })
 
-
-
-const PORT = 8080
+const PORT = Number(process.env.PORT)
 app.listen(PORT, () => {
     console.log("Server is running on: ", PORT);
-    
 });
