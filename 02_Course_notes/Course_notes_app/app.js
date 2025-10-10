@@ -53,4 +53,4 @@ app.get("/", (req, res) => {
 //     console.log("Server is running on: ", PORT);
 // });
 
-export default serverless(app);
+export default ServerlessHttp(app);
