@@ -1,7 +1,7 @@
 import express from 'express'
 import path from "path"
 import fs from 'fs'
-import ServerlessHttp from 'serverless-http';
+import serverlessHttp from 'serverless-http';
 
 const app = express();
 
@@ -32,7 +32,7 @@ app.get("/api/hello", (req, res) => {
 // ========================================PAGES========================================
 
 
-const indexPage = fs.readFileSync(path.resolve("./public/index.html")).toString();
+const indexPage = fs.readFileSync(path.resolve("./public/index.html"), "utf8")
 
 
 app.get("/", (req, res) => {
@@ -53,4 +53,4 @@ app.get("/", (req, res) => {
 //     console.log("Server is running on: ", PORT);
 // });
 
-export default ServerlessHttp(app);
+export default serverlessHttp(app);
