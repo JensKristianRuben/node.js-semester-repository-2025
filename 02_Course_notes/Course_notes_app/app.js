@@ -14,7 +14,9 @@ app.use(express.static('public'));
 
 
 
-
+app.get("/api/hello", (req, res) => {
+    res.send({data: "Hallo"})
+})
 
 
 
