@@ -1,5 +1,6 @@
 import express from 'express'
 import path from "path"
+import fs from 'fs'
 // import serverless from "serverless-http";
 
 const app = express();
@@ -12,6 +13,8 @@ app.use(express.static('public'));
 
 // ========================================API========================================
 
+
+const indexPage = fs.readFileSync("./public/index.html").toString();
 
 
 app.get("/api/hello", (req, res) => {
@@ -32,7 +35,7 @@ app.get("/api/hello", (req, res) => {
 
 
 app.get("/", (req, res) => {
-    res.sendFile(path.resolve("public/index.html"))
+    res.send(indexPage)
 })
 
 
