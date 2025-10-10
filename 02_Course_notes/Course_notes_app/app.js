@@ -15,8 +15,8 @@ app.get("/api/hello", (req, res) => {
 // ========================================PAGES========================================
 
 app.get("/", (req, res) => {
-  const indexPage = fs.readFileSync(path.resolve("./public/index.html"), "utf8");
-  res.sendFile(indexPage);
+//   const indexPage = fs.readFileSync(path.resolve("./public/index.html"), "utf8");
+  res.sendFile("<h2>Can work with Git in the terminal</h2>");
 });
 
 // ========================================CONFIG========================================
