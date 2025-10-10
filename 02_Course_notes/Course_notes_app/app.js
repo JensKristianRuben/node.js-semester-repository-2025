@@ -1,6 +1,7 @@
 import express from 'express'
 // import path from "path"
 import fs from 'fs'
+import ServerlessHttp from 'serverless-http';
 
 const app = express();
 
@@ -47,7 +48,9 @@ app.get("/", (req, res) => {
 
 
 // ========================================CONFIG========================================
-const PORT = Number(process.env.PORT)
-app.listen(PORT, () => {
-    console.log("Server is running on: ", PORT);
-});
+// const PORT = Number(process.env.PORT)
+// app.listen(PORT, () => {
+//     console.log("Server is running on: ", PORT);
+// });
+
+export default serverless(app);
