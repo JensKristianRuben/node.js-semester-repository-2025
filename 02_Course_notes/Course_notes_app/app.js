@@ -3,6 +3,7 @@ import fs from 'fs';
 import path, { dirname } from 'path';
 import { fileURLToPath } from 'url';
 import { marked } from 'marked';
+import { log } from 'console';
 
 const app = express();
 
@@ -15,33 +16,30 @@ const __dirname = dirname(__filename); //
 
 app.get('/:file', (req, res) => {
   const fileName = req.params.file;
-  const filePath = path.join(__dirname, 'markdown', `${fileName}.md`);
+  const markdownFilePath = path.join(__dirname, 'markdown', `${fileName}.md`);
+  const indexPagePath  = path.join(__dirname, 'public', "index.html");
 
-  fs.readFile(filePath, 'utf8', (err, data) => {
-    if (err) {
-      res.status(404).send('File not found');
-      return;
-    }
+  
 
-    // Konverter Markdown til HTML
-    const htmlContent = marked.parse(data);
+  const markdownContent = fs.readFileSync(markdownFilePath).toString();  // læser og laver det til en string
+  const parsedMarkdownContent = marked.parse(markdownContent) // konvertere det til html
 
-    // Send som HTML
-    res.send(`
-      <!DOCTYPE html>
-      <html>
-      <head>
-        <meta charset="utf-8">
-        <title>${fileName}</title>
-        <link rel="stylesheet" href="/style.css">
-      </head>
-      <body>
-        ${htmlContent}
-      </body>
-      </html>
-    `);
+  let indexPage = fs.readFileSync(indexPagePath).toString();
+
+  indexPage = indexPage.replace("$$MARKDOWNCONTENT$$", parsedMarkdownContent)
+
+
+  
+  
+  
+
+
+
+   
+  res.send(indexPage);
+
+
   });
-});
 
 app.get("/api/hello", (req, res) => {
   res.send({ data: "Hallo" });
