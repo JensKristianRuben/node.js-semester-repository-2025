@@ -23,6 +23,8 @@ let indexPage = fs.readFileSync(indexPagePath).toString();
 
 
 
+
+
 app.get('/markdown/:file', (req, res) => {
   const fileName = req.params.file;
   const markdownFilePath = path.join(__dirname, 'markdown', `${fileName}.md`);
@@ -33,9 +35,9 @@ app.get('/markdown/:file', (req, res) => {
   const parsedMarkdownContent = marked.parse(markdownContent) // konvertere det til html
 
 
-  indexPage = indexPage.replace("$$MARKDOWNCONTENT$$", parsedMarkdownContent)
+  const indexPageToSend = indexPage.replace("$$MARKDOWNCONTENT$$", parsedMarkdownContent)
 
-  res.send(indexPage);
+  res.send(indexPageToSend);
 
 
   });

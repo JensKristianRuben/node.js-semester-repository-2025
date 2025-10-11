@@ -45,7 +45,7 @@ body {
     margin-left: 20%;
     height: 100%;
     width: 80%;
-    padding: 2rem;
+    padding: 10rem;
     background-color: rgb(255, 255, 255);
 }
 
@@ -136,4 +136,87 @@ body {
 .note-box-bread-text {
     width: 700px;
     line-height: 2.2rem;
+}
+
+
+
+/* ============MARKDOWN STYLING=========== */
+pre {
+  background: #7e7b7b;
+  color: #dcdcdc;
+  padding: 1rem;
+  border-radius: 0.75rem;
+  overflow-x: auto;
+  font-family: 'Fira Code', 'Consolas', monospace;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin: 1em 0;
+}
+
+code.language-bash {
+  color: #dcdcdc;
+}
+code.language-bash .prompt {
+  color: #6a9955;
+}
+code.language-bash .command {
+  color: #4fc1ff;
+}
+code.language-bash .arg {
+  color: #9cdcfe;
+}
+
+code.language-js {
+  color: #dcdcdc;
+}
+code.language-js .keyword {
+  color: #c586c0;
+}
+code.language-js .string {
+  color: #ce9178;
+}
+code.language-js .number {
+  color: #b5cea8;
+}
+code.language-js .function {
+  color: #4ec9b0;
+}
+code.language-js .comment {
+  color: #6a9955;
+  font-style: italic;
+}
+
+p {
+  font-family: "Inter", "Segoe UI", Roboto, sans-serif;
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: #222;
+  margin: 1rem 0;
+  letter-spacing: 0.2px;
+}
+
+
+h1, h2 {
+  font-family: "Inter", "Segoe UI", Roboto, sans-serif;
+  font-weight: 600;
+  line-height: 1.3;
+  color: #111;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+
+h1 {
+  font-size: 2rem;
+  letter-spacing: -0.5px;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.08);
+  padding-bottom: 0.4rem;
+}
+
+
+h2 {
+  font-size: 1.5rem;
+  color: #333;
+  letter-spacing: -0.3px;
+  margin-top: 1.75rem;
 }
