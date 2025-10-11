@@ -11,14 +11,14 @@ const app = express();
 const __filename = fileURLToPath(import.meta.url); //
 const __dirname = dirname(__filename); //
 
-// app.use('/public', express.static(path.join(__dirname, 'public')));
+app.use('/public', express.static(path.join(__dirname, 'public')));
 // ========================================API========================================
 
 
 
 // ========================================PAGES========================================
 
-app.get('/:file', (req, res) => {
+app.get('/markdown/:file', (req, res) => {
   const fileName = req.params.file;
   const markdownFilePath = path.join(__dirname, 'markdown', `${fileName}.md`);
   const indexPagePath  = path.join(__dirname, 'public', "index.html");
