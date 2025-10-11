@@ -14,21 +14,24 @@ const __dirname = dirname(__filename); //
 app.use('/public', express.static(path.join(__dirname, 'public')));
 // ========================================API========================================
 
+ 
 
 
 // ========================================PAGES========================================
+const indexPagePath  = path.join(__dirname, 'public', "index.html");
+let indexPage = fs.readFileSync(indexPagePath).toString();
+
+
 
 app.get('/markdown/:file', (req, res) => {
   const fileName = req.params.file;
   const markdownFilePath = path.join(__dirname, 'markdown', `${fileName}.md`);
-  const indexPagePath  = path.join(__dirname, 'public', "index.html");
 
   
 
   const markdownContent = fs.readFileSync(markdownFilePath).toString();  // læser og laver det til en string
   const parsedMarkdownContent = marked.parse(markdownContent) // konvertere det til html
 
-  let indexPage = fs.readFileSync(indexPagePath).toString();
 
   indexPage = indexPage.replace("$$MARKDOWNCONTENT$$", parsedMarkdownContent)
 
@@ -37,12 +40,9 @@ app.get('/markdown/:file', (req, res) => {
 
   });
 
-app.get("/api/hello", (req, res) => {
-  res.send({ data: "Hallo" });
-});
 
 app.get("/", (req, res) => {
-  res.send({data: "Hallo"})
+  res.send(indexPage)
 });
 
 // ========================================CONFIG========================================
