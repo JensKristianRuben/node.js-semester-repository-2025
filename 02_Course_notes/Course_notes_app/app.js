@@ -7,12 +7,16 @@ import { log } from 'console';
 
 const app = express();
 
-// app.use(express.static("public"));
 
 const __filename = fileURLToPath(import.meta.url); //
 const __dirname = dirname(__filename); //
 
+// app.use('/public', express.static(path.join(__dirname, 'public')));
 // ========================================API========================================
+
+
+
+// ========================================PAGES========================================
 
 app.get('/:file', (req, res) => {
   const fileName = req.params.file;
@@ -44,9 +48,6 @@ app.get('/:file', (req, res) => {
 app.get("/api/hello", (req, res) => {
   res.send({ data: "Hallo" });
 });
-
-// ========================================PAGES========================================
-// const indexPage = fs.readFileSync(path.resolve("./public/index.html"), "utf8");
 
 app.get("/", (req, res) => {
   res.send({data: "Hallo"})
