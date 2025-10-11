@@ -32,14 +32,6 @@ app.get('/markdown/:file', (req, res) => {
 
   indexPage = indexPage.replace("$$MARKDOWNCONTENT$$", parsedMarkdownContent)
 
-
-  
-  
-  
-
-
-
-   
   res.send(indexPage);
 
 
