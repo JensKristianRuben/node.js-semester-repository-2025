@@ -13,10 +13,10 @@ app.get("/api/hello", (req, res) => {
 });
 
 // ========================================PAGES========================================
+const indexPage = fs.readFileSync(path.resolve("./public/index.html"), "utf8");
 
 app.get("/", (req, res) => {
-//   const indexPage = fs.readFileSync(path.resolve("./public/index.html"), "utf8");
-  res.sendFile("<h2>Can work with Git in the terminal</h2>");
+  res.sendFile(indexPage);
 });
 
 // ========================================CONFIG========================================
