@@ -7,7 +7,7 @@ import { log } from 'console';
 
 const app = express();
 
-app.use(express.static("public"));
+// app.use(express.static("public"));
 
 const __filename = fileURLToPath(import.meta.url); //
 const __dirname = dirname(__filename); //
