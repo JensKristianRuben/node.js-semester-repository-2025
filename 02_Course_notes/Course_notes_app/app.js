@@ -35,7 +35,8 @@ app.get('/markdown/:file', (req, res) => {
   const parsedMarkdownContent = marked.parse(markdownContent) // konvertere det til html
 
 
-  const indexPageToSend = indexPage.replace("$$MARKDOWNCONTENT$$", parsedMarkdownContent)
+  const indexPageToSend = indexPage.replace("$$MARKDOWNCONTENT$$", parsedMarkdownContent).replace("$$TITLE$$", `Fullstack node.js notes - ${fileName}`)
+
 
   res.send(indexPageToSend);
 
