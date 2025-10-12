@@ -13,6 +13,7 @@ const __dirname = dirname(__filename); //
 app.use(express.static(path.join(__dirname, "public")));
 // ========================================API========================================
 
+
 // ========================================PAGES========================================
 const indexPagePath = path.join(__dirname, "public", "index.html");
 let indexPage = fs.readFileSync(indexPagePath).toString();
