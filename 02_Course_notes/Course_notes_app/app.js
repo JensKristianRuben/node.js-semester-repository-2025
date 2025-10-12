@@ -7,11 +7,13 @@ import { log } from "console";
 
 const app = express();
 
-const __filename = fileURLToPath(import.meta.url); //
-const __dirname = dirname(__filename); //
+const __filename = fileURLToPath(import.meta.url); 
+const __dirname = dirname(__filename); 
 
 app.use(express.static(path.join(__dirname, "public")));
 // ========================================API========================================
+
+
 
 
 // ========================================PAGES========================================

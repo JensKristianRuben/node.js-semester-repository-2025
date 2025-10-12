@@ -18,3 +18,21 @@ function navigateClassTopics(topic) {
     subject.classList.add('active');
 
 }
+
+addCopyHandlersForAllCodeSnippets();
+
+function addCopyHandlersForAllCodeSnippets(){
+    const codeSnippetsCodeTag = document.querySelectorAll("pre")
+    
+
+    codeSnippetsCodeTag.forEach(element => {
+        element.addEventListener("click", () => {
+            const codeToCopy = element.firstElementChild.innerText;
+            navigator.clipboard.writeText(codeToCopy);
+            element.style.background = "#339933"
+            setTimeout(() => {
+                element.style.background = "#7e7b7b";
+            },2000)
+        });
+    });
+}
