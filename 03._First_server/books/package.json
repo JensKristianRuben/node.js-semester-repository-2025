@@ -1,0 +1,17 @@
+{
+  "name": "books",
+  "version": "0.0.1",
+  "description": "Test project to test REST api ",
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "cross-env PORT=8080 nodemon app.js"
+  },
+  "dependencies": {
+    "cross-env": "^10.1.0",
+    "express": "^5.1.0"
+  }
+}

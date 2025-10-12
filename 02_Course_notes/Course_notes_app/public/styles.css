@@ -45,7 +45,7 @@ body {
     margin-left: 20%;
     height: 100%;
     width: 80%;
-    padding: 10rem;
+    padding: 2rem 10rem 10rem 10rem;
     background-color: rgb(255, 255, 255);
 }
 
@@ -151,6 +151,7 @@ pre {
   font-size: 0.95rem;
   line-height: 1.5;
   margin: 1em 0;
+  cursor: pointer;
 }
 
 code.language-bash {
