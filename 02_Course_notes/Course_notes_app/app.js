@@ -41,6 +41,12 @@ app.get("/markdown/:file", (req, res) => {
   res.send(indexPageToSend);
 });
 
+app.get("/Stylesheet", (req, res) => {
+  const stylesheet = path.join(__dirname, "public", "styles.css")
+
+  app.send(stylesheet)
+});
+
 
 app.get("/", (req, res) => {
   res.send(indexPage);

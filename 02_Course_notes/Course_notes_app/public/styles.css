@@ -139,6 +139,20 @@ body {
 }
 
 
+/* =======================MOBILE===================== */
+
+@media (max-width: 750px) {
+  
+    .main-Content {
+      width: 100%;
+      margin: 0;
+      padding: 0;
+    }
+    .navigation-bar {
+      display: none ;
+    }
+}
+
 
 /* ============MARKDOWN STYLING=========== */
 pre {
