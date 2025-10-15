@@ -8,14 +8,15 @@ app.use(express.static("public")); // Sørger for at importere hele public mappe
 
 // import candyCommon from "./util/candyCommon.js";
 
-import candyESModule from "./util/candyESModule.js"
+// import candyESModule from "./util/candyESModule.js"
 
 // console.log(candyCommon);
 
-console.log(candyESModule);
+// console.log(candyESModule);
 
+import { hallo } from "./util/candyESModule.js";
 
-
+hallo("Jens"); // Hallo Jens
 
 let visitorsCounter = 0;
 
