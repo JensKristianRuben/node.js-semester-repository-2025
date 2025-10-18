@@ -39,10 +39,7 @@ const fourZeroFourPage = fs.readFileSync(fourZeroFourPagePath).toString();
 
 app.get("/markdown/:file", (req, res) => {
   const fileName = req.params.file;
-  const htmlToSend = htmlFiles[fileName]
-
-  console.log(path.join(__dirname, "markdown/", `${fileName}`));
-  
+  const htmlToSend = htmlFiles[fileName]  
 
   if (!fs.existsSync(path.join(__dirname, "markdown/", `${fileName}`))) {
     res.status(404).send(fourZeroFourPage)
