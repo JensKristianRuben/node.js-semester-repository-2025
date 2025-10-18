@@ -13,7 +13,7 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "cross-env PORT=8080 nodemon app.js",
+    "dev": "cross-env PORT=8080 nodemon --ext js,html,json app.js",
     "startWinCMD": "set PORT=8080 && nodemon app.js",
     "startWinPowershell": "$env:PORT='8080'; nodemon app.js"
   },

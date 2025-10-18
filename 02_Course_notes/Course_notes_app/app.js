@@ -3,7 +3,6 @@ import fs from "fs";
 import path, { dirname } from "path";
 import { fileURLToPath } from "url";
 import { marked } from "marked";
-import { log } from "console";
 
 const app = express();
 
