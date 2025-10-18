@@ -13,6 +13,21 @@ app.use(express.static(path.join(__dirname, "public")));
 // ========================================API========================================
 
 
+//=========================================MARKDOWN FILES=============================
+
+const htmlFiles = {};
+
+const markdownPath = path.join(__dirname, "markdown");
+const markdownFileNames = fs.readdirSync(markdownPath);
+
+markdownFileNames.forEach(file => {
+  const markdownFileString = fs.readFileSync(path.join(markdownPath, file)).toString()
+  const markdownFileStringToHTML = marked.parse(markdownFileString);
+  
+  htmlFiles[file] = markdownFileStringToHTML; // Jeg undrer mig lidt over den her syntaks, og hvorfor man ikke kan brug dot syntaksen
+});
+
+
 
 
 // ========================================PAGES========================================
@@ -24,26 +39,20 @@ const fourZeroFourPage = fs.readFileSync(fourZeroFourPagePath).toString();
 
 app.get("/markdown/:file", (req, res) => {
   const fileName = req.params.file;
-  const markdownFilePath = path.join(__dirname, "markdown", `${fileName}.md`);
+  const htmlToSend = htmlFiles[fileName]
 
-  if (!fs.existsSync(markdownFilePath)) {
+  console.log(path.join(__dirname, "markdown/", `${fileName}`));
+  
+
+  if (!fs.existsSync(path.join(__dirname, "markdown/", `${fileName}`))) {
     res.status(404).send(fourZeroFourPage)
   }
 
-  const markdownContent = fs.readFileSync(markdownFilePath).toString(); // læser og laver det til en string
-  const parsedMarkdownContent = marked.parse(markdownContent); // konvertere det til html
-
   const indexPageToSend = indexPage
-    .replace("$$MARKDOWNCONTENT$$", parsedMarkdownContent)
+    .replace("$$MARKDOWNCONTENT$$", htmlToSend)
     .replace("$$TITLE$$", `Fullstack node.js notes - ${fileName}`);
 
   res.send(indexPageToSend);
-});
-
-app.get("/Stylesheet", (req, res) => {
-  const stylesheet = path.join(__dirname, "public", "styles.css")
-
-  app.send(stylesheet)
 });
 
 
