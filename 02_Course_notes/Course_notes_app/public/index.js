@@ -29,10 +29,19 @@ function addCopyHandlersForAllCodeSnippets(){
         element.addEventListener("click", () => {
             const codeToCopy = element.firstElementChild.innerText;
             navigator.clipboard.writeText(codeToCopy);
-            element.style.background = "#339933"
+            element.style.border = "3px solid #339933"
             setTimeout(() => {
-                element.style.background = "#7e7b7b";
+                element.style.border = "none";
             },2000)
         });
     });
 }
+
+
+// Skal lige ligges lidt smartere
+const burger = document.querySelector('.burger-menu');
+const nav = document.querySelector('.navigation-bar');
+
+burger.addEventListener('click', () => {
+  nav.classList.toggle('active');
+});
