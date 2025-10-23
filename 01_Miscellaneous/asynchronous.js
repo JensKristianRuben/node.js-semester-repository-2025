@@ -1,23 +1,23 @@
-new Promise((resolve, reject) => {
-  setTimeout(() => {
-    try {
-      throw "ohh noo!";
-      resolve("everything went well");
-    } catch (error) {
-      reject("Ohh noo!");
-    }
-  }, 2000);
-})
-  .then((message) => console.log(message))
-  .catch((error) => {
-    console.log(error);
-  });
+// new Promise((resolve, reject) => {
+//   setTimeout(() => {
+//     try {
+//       throw "ohh noo!";
+//       resolve("everything went well");
+//     } catch (error) {
+//       reject("Ohh noo!");
+//     }
+//   }, 2000);
+// })
+//   .then((message) => console.log(message))
+//   .catch((error) => {
+//     console.log(error);
+//   });
 
 function myPromise() {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       try {
-        // throw "something bad";
+        // throw new Error("something bad");
         resolve("Something good");
       } catch (error) {
         reject(error);
@@ -26,3 +26,16 @@ function myPromise() {
   });
 }
 
+// myPromise()
+// .then((succesMessage) => console.log(succesMessage)
+// )
+// .catch((errorMessage) => console.log(errorMessage)
+// );
+
+try{
+
+    const succesMessage = await myPromise();
+    console.log(succesMessage);
+} catch {
+    
+}
