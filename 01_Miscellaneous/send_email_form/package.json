@@ -1,0 +1,21 @@
+{
+  "name": "send_email_form",
+  "version": "0.0.1",
+  "description": "testing sending email via browser form",
+  "license": "ISC",
+  "author": "me",
+  "type": "module",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "cross-env PORT=8080 nodemon app.js"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "resend": "^6.2.2"
+  },
+  "devDependencies": {
+    "cross-env": "^10.1.0"
+  }
+}
