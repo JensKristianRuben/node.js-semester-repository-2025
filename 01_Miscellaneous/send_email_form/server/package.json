@@ -11,6 +11,7 @@
     "dev": "cross-env PORT=8080 nodemon app.js"
   },
   "dependencies": {
+    "bcrypt": "^6.0.0",
     "dotenv": "^17.2.3",
     "express": "^5.1.0",
     "resend": "^6.2.2"
