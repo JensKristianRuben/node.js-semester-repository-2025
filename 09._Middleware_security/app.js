@@ -1,10 +1,26 @@
+import dotenv from 'dotenv'
 import express from 'express';
 import authRouter from './routers/authRouter.js'
 import middlewareRouter from './routers/middlewareRouter.js';
-import { rateLimit } from 'express-rate-limit'
+import sessionsRouter from './routers/sessionsRouter.js';
+import { rateLimit } from 'express-rate-limit';
+import session from 'express-session';
+import helmet from 'helmet';
 
 
+
+
+dotenv.config(process.env.SESSION_SECRET)
 const app = express();
+
+app.use(helmet());
+
+app.use(session({
+  secret: process.env.SESSION_SECRET,
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: false } // skal sættes til false hvis vi ikke kører på https
+}));
 
 const generalLimiter = rateLimit({
 	windowMs: 15 * 60 * 1000, // 15 minutes
@@ -30,6 +46,7 @@ app.use("/auth", authLimiter)
 
 app.use(authRouter) 
 app.use(middlewareRouter);
+app.use(sessionsRouter);
 
 app.get("/{*splat}", (req, res) => {
     res.send("<h1>404<h1><h3>Couldnt find the page<h3>")
