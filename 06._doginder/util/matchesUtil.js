@@ -1,4 +1,4 @@
-import { fakerEN_IN } from '@faker-js/faker';
+import { fakerEN_IN, fakerDA } from '@faker-js/faker';
 
 
 export async function getMatches(amountOfMatches = 5) {
@@ -19,10 +19,10 @@ export async function getMatches(amountOfMatches = 5) {
 
 function getIndianProfile() {
     return {
-        name: fakerEN_IN.person.fullName(),
-        bio: fakerEN_IN.person.bio(),
-        address: fakerEN_IN.location.streetAddress(),
-        city: fakerEN_IN.location.city()
+        name: fakerDA.person.fullName(),
+        bio: fakerDA.person.bio(),
+        address: fakerDA.location.streetAddress(),
+        city: fakerDA.location.city()
     }
 }
 
