@@ -1,10 +1,12 @@
 {
-  "name": "server",
+  "name": "11._sql_fitness",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "deleteDatabase": "node ./database/createDatabase.js delete",
+    "updateDatabase": "node ./database/createDatabase.js",
     "dev": "cross-env PORT=8080 nodemon app.js"
   },
   "keywords": [],
@@ -12,10 +14,10 @@
   "license": "ISC",
   "type": "module",
   "dependencies": {
-    "cors": "^2.8.5",
     "cross-env": "^10.1.0",
-    "dotenv": "^17.2.3",
     "express": "^5.1.0",
-    "express-session": "^1.18.2"
+    "multer": "^2.0.2",
+    "sqlite": "^5.1.1",
+    "sqlite3": "^5.1.7"
   }
 }

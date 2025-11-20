@@ -3,12 +3,17 @@ import express from 'express';
 import realEstateAgentsRouter from './routers/realEstateAgentsRouter.js'
 import housesRouter from './routers/housesRouter.js'
 import session from 'express-session';
+import cors from 'cors'
 
 
 
 const app = express();
 
 app.use(express.json());
+app.use(cors({
+    origin: true,
+    credentials: true
+}));
 
 app.use(session({
   secret: process.env.SESSION_SECRET,
